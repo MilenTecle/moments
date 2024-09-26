@@ -37,7 +37,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Sign Un Data:", signUpData)
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
