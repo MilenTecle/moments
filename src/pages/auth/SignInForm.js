@@ -32,7 +32,9 @@ function SignInForm() {
     event.preventDefault();
 
     try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData)
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData, {
+        withCredentials: true, 
+      });
       setCurrentUser(data.user);
       history.push("/");
     } catch (err) {
