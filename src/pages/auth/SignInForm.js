@@ -32,7 +32,7 @@ function SignInForm() {
     event.preventDefault();
 
     try {
-      const { data } = await axios.post("https://drf-api-reco-69ef489e362a.herokuapp.com/dj-rest-auth/login/", signInData, {
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData, {
         withCredentials: true, 
       });
       setCurrentUser(data.user);

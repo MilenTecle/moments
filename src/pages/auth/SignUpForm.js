@@ -38,7 +38,7 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://drf-api-reco-69ef489e362a.herokuapp.com/dj-rest-auth/registration/", signUpData, {
+      const response = await axios.post("/dj-rest-auth/registration/", signUpData, {
         withCredentials: true,
       });
 
