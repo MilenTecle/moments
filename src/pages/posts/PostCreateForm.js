@@ -29,8 +29,8 @@ function PostCreateForm() {
   });
   const { title, content, image } = postData;
 
-  const imageInput = useRef(null)
-  const history = useHistory()
+  const imageInput = useRef(null);
+  const history = useHistory();
 
   const handleChange = (event) => {
     setPostData({
@@ -49,24 +49,24 @@ function PostCreateForm() {
     }
   };
 
-  const handleSubmit =  async (event) => {
-    event.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const formData = new FormData();
 
-    formData.append('title', title)
-    formData.append('content', content)
-    formData.append('image', imageInput.current.files[0])
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", imageInput.current.files[0]);
 
     try {
-        const {data} = await axiosReq.post('/posts/', formData);
-        history.push(`/posts/${data.id}`)
-    }   catch(err){
-        console.log(err)
-        if (err.response?.status !== 401){
-            setErrors(err.response?.data)
-        }
+      const { data } = await axiosReq.post("/posts/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
     }
-  }
+  };
 
   const textFields = (
     <div className="text-center">
@@ -80,8 +80,8 @@ function PostCreateForm() {
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (
-        <Alert key={idx} variant="warning">
-            {message}
+        <Alert variant="warning" key={idx}>
+          {message}
         </Alert>
       ))}
 
@@ -96,8 +96,8 @@ function PostCreateForm() {
         />
       </Form.Group>
       {errors?.content?.map((message, idx) => (
-        <Alert key={idx} variant="warning">
-            {message}
+        <Alert variant="warning" key={idx}>
+          {message}
         </Alert>
       ))}
 
@@ -155,10 +155,11 @@ function PostCreateForm() {
               />
             </Form.Group>
             {errors?.image?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                    {message}
-                </Alert>
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
             ))}
+
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
