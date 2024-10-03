@@ -38,10 +38,14 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
+      // Attempt to register the user
+      const response = await axios.post("/dj-rest-auth/registration/", signUpData);
+      console.log('Registration successful:', response.data);
+  
+      history.push("/signin");  // Redirect to the sign-in page
     } catch (err) {
-      setErrors(err.response?.data);
+      console.error('Registration error:', err.response?.data);
+      setErrors(err.response?.data);  // Show error messages on the form
     }
   };
 
