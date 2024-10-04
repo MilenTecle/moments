@@ -15,8 +15,10 @@ import {
   Alert,
 } from "react-bootstrap";
 import axios from "axios";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
+  useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -38,14 +40,10 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Attempt to register the user
-      const response = await axios.post("/dj-rest-auth/registration/", signUpData);
-      console.log('Registration successful:', response.data);
-  
-      history.push("/signin");  // Redirect to the sign-in page
+      await axios.post("/dj-rest-auth/registration/", signUpData);
+      history.push("/signin");
     } catch (err) {
-      console.error('Registration error:', err.response?.data);
-      setErrors(err.response?.data);  // Show error messages on the form
+      setErrors(err.response?.data);
     }
   };
 
