@@ -20,13 +20,15 @@ import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
+
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-  const currentUser = useCurrentUSer();
 
   const [query, setQuery] = useState("");
+
+  const currentUser = useCurrentUser
 
   useEffect(() => {
     const fetchPosts = async () => {
